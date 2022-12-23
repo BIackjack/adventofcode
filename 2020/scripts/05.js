@@ -1,4 +1,4 @@
-const Utils = require('../utils');
+const Utils = require('../../utils');
 Utils.getInput('05')
 .then(input => {
 

@@ -1,4 +1,4 @@
-const Utils = require('../utils');
+const Utils = require('../../utils');
 Utils.getFile('06')
 .then(file => {
 
