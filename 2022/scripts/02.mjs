@@ -1,3 +1,5 @@
+import {getInput} from '../../utils.mjs';
+
 const getMatchOutcomePointsPart1 = (char1, char2) => {
     if (char1 === 'A' && char2 === 'X') {
         return 3 + 1;
@@ -42,8 +44,7 @@ const getMatchOutcomePointsPart2 = (char1, char2) => {
     }
 }
 
-const Utils = require('../../utils');
-Utils.getInput('02')
+getInput('02')
 .then(input => {
     const totalPart1 = input.reduce((acc, curr) => {
         const matchOutcomePoints = getMatchOutcomePointsPart1(curr[0], curr[2]);

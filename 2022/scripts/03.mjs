@@ -1,3 +1,5 @@
+import {getInput} from '../../utils.mjs';
+
 const getLetterPriority = (letter) => {
     const charCode = letter.charCodeAt(0);
     if (97 <= charCode && charCode <= 122) {
@@ -9,8 +11,7 @@ const getLetterPriority = (letter) => {
     }
 }
 
-const Utils = require('../../utils');
-Utils.getInput('03')
+getInput('03')
 .then(input => {
     const lettersPart1 = input.map(line => {
         const firstHalf = line.slice(0, line.length / 2);

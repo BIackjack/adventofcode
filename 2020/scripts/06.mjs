@@ -1,5 +1,6 @@
-const Utils = require('../../utils');
-Utils.getFile('06')
+import {getFile} from '../../utils.mjs';
+
+getFile('06')
 .then(file => {
 
     // Part 1

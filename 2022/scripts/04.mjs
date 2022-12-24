@@ -1,3 +1,5 @@
+import {getInput} from '../../utils.mjs';
+
 const getCurrentPairBounds = (currentPair) => {
     return currentPair.split(',')
                       .flatMap(a => a.split('-').map(b => +b));
@@ -13,8 +15,7 @@ const doThePairsPartiallyOverlap = (firstLowerBound, firstUpperBound, secondLowe
     return firstUpperBound >= secondLowerBound && secondUpperBound >= firstLowerBound;
 }
 
-const Utils = require('../../utils');
-Utils.getInput('04')
+getInput('04')
 .then(input => {
     const totalTotallyOverlappingPairs = input.reduce((acc, currentPair) => {
         const bounds = getCurrentPairBounds(currentPair);

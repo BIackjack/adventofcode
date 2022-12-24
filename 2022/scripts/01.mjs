@@ -1,5 +1,6 @@
-const Utils = require('../../utils');
-Utils.getInput('01')
+import {getInput} from '../../utils.mjs';
+
+getInput('01')
 .then(input => {
     
     const elves = [[]];

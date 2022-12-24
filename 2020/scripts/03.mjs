@@ -1,5 +1,6 @@
-const Utils = require('../../utils');
-Utils.getInput('03')
+import {getInput} from '../../utils.mjs';
+
+getInput('03')
 .then(input => {
 
     // Part 1

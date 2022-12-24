@@ -1,5 +1,6 @@
-const Utils = require('../../utils');
-Utils.getFile('04')
+import {getFile} from '../../utils.mjs';
+
+getFile('04')
 .then(file => {
     const KEYS = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'];
 
