@@ -15,7 +15,7 @@ export class AppComponent {
         }, 
         {
             title: 'Year 2022',
-            expanded: true,
+            expanded: true, // 2022 is expanded by default
             icon: 'calendar-outline',
             children: this.year2022MenuItems,
             badge: {
@@ -30,17 +30,20 @@ export class AppComponent {
             {
                 title: 'Day 1',
                 icon: 'checkmark-circle-2-outline',
-                link: '2022/01',
+                link: '/2022/01',
+                pathMatch: 'full',
             },
             {
                 title: 'Day 2',
                 icon: 'checkmark-circle-2-outline',
-                link: '2022/02',
+                link: '/2022/02',
+                pathMatch: 'full',
             },
             {
                 title: 'Day 3',
                 icon: 'more-horizontal-outline',
-                link: '2022/03',
+                link: '/2022/03',
+                pathMatch: 'full',
             },
         ];
     }
