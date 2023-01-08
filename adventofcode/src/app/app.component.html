@@ -1,11 +1,14 @@
 <nb-layout>
-  <nb-layout-header fixed><h2>Advent of code</h2></nb-layout-header>
+    <nb-layout-header fixed>
+        <h2>Advent of code</h2>
+        <button id="return-to-home" nbButton appearance="ghost"><nb-icon icon="home-outline"></nb-icon> Return to home</button>
+    </nb-layout-header>
 
-  <nb-sidebar>
-    <nb-menu [items]="items"></nb-menu>
-  </nb-sidebar>
+    <nb-sidebar>
+        <nb-menu [items]="items"></nb-menu>
+    </nb-sidebar>
   
-  <nb-layout-column>
-    Page Content <button nbButton status="primary">Hello World</button>
-  </nb-layout-column>
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
 </nb-layout>

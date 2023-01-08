@@ -30,14 +30,17 @@ export class AppComponent {
             {
                 title: 'Day 1',
                 icon: 'checkmark-circle-2-outline',
+                link: '2022/01',
             },
             {
                 title: 'Day 2',
                 icon: 'checkmark-circle-2-outline',
+                link: '2022/02',
             },
             {
                 title: 'Day 3',
                 icon: 'more-horizontal-outline',
+                link: '2022/03',
             },
         ];
     }
