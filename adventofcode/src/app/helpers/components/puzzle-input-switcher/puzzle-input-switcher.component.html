@@ -1,0 +1,13 @@
+<div id="toolbar">
+    <nb-button-group (valueChange)="onModeChanged($event)">
+        <button nbButtonToggle value="example" pressed="true">Example input</button>
+        <button nbButtonToggle value="personal">Personal input</button>
+    </nb-button-group>
+</div>
+
+<textarea nbInput fullWidth rows="15" [(ngModel)]="currentInput"></textarea>
+
+<button id="run-btn" size="large" status="primary" nbButton (click)="onRunInput()">
+    Run input
+    <nb-icon icon="play-circle-outline"></nb-icon>
+</button> 

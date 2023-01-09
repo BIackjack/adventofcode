@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonModule, NbCalendarModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonGroupModule, NbButtonModule, NbCalendarModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,16 +14,21 @@ import { HomeComponent } from './views/home/home.component';
     AppComponent,
     HomeComponent,
     PuzzleYear2022Day01Component,
+    PuzzleInputSwitcherComponent,
 ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     NbLayoutModule,
     NbThemeModule.forRoot({ name: 'dark' }),
     NbMenuModule.forRoot(),
     NbSidebarModule.forRoot(), 
+    NbInputModule,
     NbButtonModule,
+    NbButtonGroupModule,
     NbEvaIconsModule,
     NbIconModule,
     NbCalendarModule,
@@ -55,6 +60,9 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 // Import the Canvas renderer
 // Note that including the CanvasRenderer or SVGRenderer is a required step
 import { CanvasRenderer } from 'echarts/renderers';
+import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // Register the required components
 echarts.use([

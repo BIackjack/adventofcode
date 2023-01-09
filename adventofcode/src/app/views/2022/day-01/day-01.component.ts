@@ -8,77 +8,54 @@ import * as echarts from 'echarts/core';
   styleUrls: ['./day-01.component.scss']
 })
 export class PuzzleYear2022Day01Component implements OnInit {
+    chart!: echarts.ECharts;
+
     ngOnInit(): void {
-        const chart = echarts.init(document.getElementById('chart') as HTMLElement, 'dark');
+        this.chart = echarts.init(document.getElementById('chart') as HTMLElement, 'dark');
+    }
+
+    onInputRun(rawInput: string) {
+        const input = rawInput.replaceAll('\r\n', '\n');
+        const elves = input.split('\n\n').map(e => e.split('\n'));
+
+        const bestCalorieTotal = elves.reduce((bestTotalSoFar, currentElf) => {
+            const currentElfTotal = currentElf.reduce((acc, val) => acc + parseInt(val), 0);
+            return Math.max(currentElfTotal, bestTotalSoFar); 
+        }, -Infinity);
         
-        chart.setOption({
+        const maxNbOfItems = elves.reduce((maxLengthSoFar, currentElf) => {
+            return Math.max(currentElf.length, maxLengthSoFar); 
+        }, -Infinity);
+
+        const data = elves.map((_, i) => `Elf #${i + 1}`);
+        
+        const series = []; 
+        for (let i = 0; i < maxNbOfItems; i++) {
+            series.push({
+                name: `Item #${i + 1}`,
+                type: 'bar',
+                stack: 'total',
+                data: elves.map(e => e[i]),
+            });
+        }
+
+        this.chart.clear();
+        this.chart.setOption({
             tooltip: {
-              trigger: 'axis',
-              axisPointer: {
-                type: 'shadow',
-              }
-            },
-            grid: {
-              left: '3%',
-              right: '4%',
-              bottom: '3%',
-              containLabel: true,
-              backgroundColor: 'transparent'
+                trigger: 'axis',
+                order: 'seriesDesc',
+                axisPointer: {
+                    type: 'shadow',
+                }
             },
             xAxis: {
                 type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                data,
             },
             yAxis: {
                 type: 'value',
             },
-            series: [
-              {
-                name: 'Direct',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                  show: true
-                },
-                data: [320, 302, 301, 334, 390, 330, 320]
-              },
-              {
-                name: 'Mail Ad',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                  show: true
-                },
-                data: [120, 132, 101, 134, 90, 230, 210]
-              },
-              {
-                name: 'Affiliate Ad',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                  show: true
-                },
-                data: [220, 182, undefined, 234, 290, 330, 310]
-              },
-              {
-                name: 'Video Ad',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                  show: true
-                },
-                data: [150, 212, 201, 154, 190, 330, 410]
-              },
-              {
-                name: 'Search Engine',
-                type: 'bar',
-                stack: 'total',
-                label: {
-                  show: true
-                },
-                data: [820, 832, 901, 934, 1290, 1330, 1320]
-              },
-            ]
+            series,
         });
     }
 }
