@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as echarts from 'echarts/core';
+import { CallbackDataParams } from 'echarts/types/dist/shared';
+import { sum } from 'src/app/helpers/sum';
 
 @Component({
   selector: 'year-2022-day-01',
@@ -10,24 +12,25 @@ import * as echarts from 'echarts/core';
 export class PuzzleYear2022Day01Component implements OnInit {
     chart!: echarts.ECharts;
 
+    part1Answer = 0;
+    part2Answer = 0;
+    part2Explanation = '';
+
     ngOnInit(): void {
         this.chart = echarts.init(document.getElementById('chart') as HTMLElement, 'dark');
     }
 
     onInputRun(rawInput: string) {
         const input = rawInput.replaceAll('\r\n', '\n');
-        const elves = input.split('\n\n').map(e => e.split('\n'));
+        const elves = input.split('\n\n').map((e, i) => ({name:  `Elf #${i + 1}`, data: e.split('\n')}));
 
-        const bestCalorieTotal = elves.reduce((bestTotalSoFar, currentElf) => {
-            const currentElfTotal = currentElf.reduce((acc, val) => acc + parseInt(val), 0);
-            return Math.max(currentElfTotal, bestTotalSoFar); 
-        }, -Infinity);
+        elves.sort((a, b) => sum(...a.data) - sum(...b.data));
         
         const maxNbOfItems = elves.reduce((maxLengthSoFar, currentElf) => {
-            return Math.max(currentElf.length, maxLengthSoFar); 
+            return Math.max(currentElf.data.length, maxLengthSoFar); 
         }, -Infinity);
 
-        const data = elves.map((_, i) => `Elf #${i + 1}`);
+        const data = elves.map(e => e.name);
         
         const series = []; 
         for (let i = 0; i < maxNbOfItems; i++) {
@@ -35,7 +38,7 @@ export class PuzzleYear2022Day01Component implements OnInit {
                 name: `Item #${i + 1}`,
                 type: 'bar',
                 stack: 'total',
-                data: elves.map(e => e[i]),
+                data: elves.map(e => e.data[i]),
             });
         }
 
@@ -46,6 +49,17 @@ export class PuzzleYear2022Day01Component implements OnInit {
                 order: 'seriesDesc',
                 axisPointer: {
                     type: 'shadow',
+                },
+                formatter: function(params: CallbackDataParams[]) {
+                    const dataTotal = params.reduce((acc, e) => acc + parseInt((e.value ?? '0') as string), 0);
+
+                    const dataTooltip = params.map(e => `<div>${e.marker} ${e.seriesName}: <strong>${e.value ?? '-'}</strong></div>`);
+                    let tooltip = `<div class="tooltip-label">${params[0].name}</div>`;
+                    tooltip += dataTooltip.reverse().join('');
+                    tooltip += '<hr>';
+                    tooltip += `<div>Total: <strong>${dataTotal}</strong></div>`;
+                    console.log(params, tooltip);
+                    return tooltip;
                 }
             },
             xAxis: {
@@ -57,5 +71,10 @@ export class PuzzleYear2022Day01Component implements OnInit {
             },
             series,
         });
+
+        this.part1Answer = sum(...elves[elves.length - 1].data);
+        const last3Elves = elves.slice(-3);
+        this.part2Answer = sum(...last3Elves.flatMap(e => e.data));
+        this.part2Explanation = last3Elves.map(e => sum(...e.data)).join(' + ');
     }
 }
