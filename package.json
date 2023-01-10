@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-page": "ng build --base-href https://BIackjack.github.io/adventofcode/",
+    "build-page": "ng build --base-href https://biackjack.github.io/adventofcode/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
