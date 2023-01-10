@@ -28,7 +28,7 @@ export class PuzzleInputSwitcherComponent implements OnInit {
         this.checkInputs();
 
         this.httpClient
-        .get(`http://localhost:8080/inputs/${this.year}/${this.day}-example`, {
+        .get(`assets/inputs/${this.year}/${this.day}-example`, {
             responseType: 'text',
         })
         .subscribe((data) => {
@@ -39,7 +39,7 @@ export class PuzzleInputSwitcherComponent implements OnInit {
         });
 
         this.httpClient
-        .get(`http://localhost:8080/inputs/${this.year}/${this.day}-personal`, {
+        .get(`assets/inputs/${this.year}/${this.day}-personal`, {
             responseType: 'text',
         })
         .subscribe((data) => {
