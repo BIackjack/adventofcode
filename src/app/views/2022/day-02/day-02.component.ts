@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BarSeriesOption, LineSeriesOption } from 'echarts';
 import * as echarts from 'echarts/core';
-import { CallbackDataParams } from 'echarts/types/dist/shared';
+import { CallbackDataParams, DatasetOption } from 'echarts/types/dist/shared';
 
 type Move = 'paper' | 'rock' | 'scissors';
 type Result = 'win' | 'loss' | 'draw';
@@ -91,20 +91,33 @@ export class PuzzleYear2022Day02Component implements OnInit {
             return [...acc, boutsSum + currentBoutPoints];
         }, []);
 
+        const dataset: DatasetOption = {
+            source: [
+                ['Bout', 'My move', 'Nb of points from my move', 'Opponent\'s move', 'Bout result', 'Nb of points from result'],
+                ...bouts.map(({data, name}) => [name, data.myMove, data.nbPointsFromMyMove, data.opponentMove, data.result, data.nbPointsFromResult]),
+            ]
+        }
+
         const series: Array<LineSeriesOption | BarSeriesOption> = [
             {
                 name: 'Points from my move',
                 type: 'bar',
                 stack: 'Total',
                 yAxisIndex: 0,
-                data: bouts.map(b => b.data.nbPointsFromMyMove),
+                encode: {
+                    x: 'Bout',
+                    y: 'Nb of points from my move',
+                },
             },
             {
                 name: 'Points from bout result',
                 type: 'bar',
                 stack: 'Total',
                 yAxisIndex: 0,
-                data: bouts.map(b => b.data.nbPointsFromResult),
+                encode: {
+                    x: 'Bout',
+                    y: 'Nb of points from result',
+                },
             },
             {
                 name: 'Point sum',
@@ -140,13 +153,29 @@ export class PuzzleYear2022Day02Component implements OnInit {
                     type: 'shadow',
                 },
                 formatter: function(params: CallbackDataParams[]) {
-                    const dataTotal = params.pop();
+                    const sumData = params.pop();
+                    const sumTooltip = `<div>${sumData?.marker} Current point sum: <strong>${sumData?.data}</strong></div>`;
 
-                    const dataTooltip = params.map(e => `<div>${e.marker} ${e.seriesName}: <strong>${e.value ?? '-'}</strong></div>`);
+                    const [, myMove, nbPointsFromMyMove, opponentMove, boutResult, nbPointsFromResult] = params[0].value as unknown[];
+
+                    const nbPointsFromMyMoveTooltip = `<div>${params[0].marker} ${params[0].seriesName}: <strong>${nbPointsFromMyMove ?? '-'}</strong></div>`;
+                    const nbPointsFromResultTooltip = `<div>${params[1].marker} ${params[1].seriesName}: <strong>${nbPointsFromResult ?? '-'}</strong></div>`;
+
+                    const opoonentMoveTooltip = `<img src="assets/icons/${opponentMove}.svg" width="${boutResult === 'loss' ? '40px' : 'auto'}"/>`;
+                    const myMoveTooltip = `<img src="assets/icons/${myMove}.svg" width="${boutResult === 'win' ? '40px' : 'auto'}"/>`;
+                    const boutTooltip = `
+                    <table>
+                        <tr><td>         Me         </td><td>          </td><td>         Opponent         </td></tr>
+                        <tr><td>  ${myMoveTooltip}  </td><td>  versus  </td><td>  ${opoonentMoveTooltip}  </td></tr>
+                    </table>
+                    `;
+
                     let tooltip = `<div class="tooltip-label">${params[0].name}</div>`;
-                    tooltip += dataTooltip.reverse().join('');
+                    tooltip += boutTooltip;
+                    tooltip += nbPointsFromResultTooltip;
+                    tooltip += nbPointsFromMyMoveTooltip;
                     tooltip += '<hr>';
-                    tooltip += `<div>${dataTotal?.marker} Current total: <strong>${dataTotal?.data}</strong></div>`;
+                    tooltip += sumTooltip;
                     console.log(params, tooltip);
                     return tooltip;
                 }
@@ -172,6 +201,7 @@ export class PuzzleYear2022Day02Component implements OnInit {
                     name: 'Point sum',
                 },
             ],
+            dataset,
             series,
         });
 

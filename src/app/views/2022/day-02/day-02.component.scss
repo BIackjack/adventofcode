@@ -1,8 +1,19 @@
-::ng-deep .tooltip-label {
-    text-align: center;
-    width: 100%;
-    display: inline-block;
-    font-weight: bold;
-    margin: 5px 0 15px;
-    font-size: 18px;
+::ng-deep {
+    .tooltip-label {
+        text-align: center;
+        width: 100%;
+        display: inline-block;
+        font-weight: bold;
+        margin: 5px 0 15px;
+        font-size: 18px;
+    }
+
+    table {
+        margin: 0 auto 10px;
+        text-align: center;
+    }
+
+    td {
+        min-width: 70px;
+    }
 }
