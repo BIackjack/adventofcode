@@ -8,7 +8,7 @@ const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: '2022/01', component: PuzzleYear2022Day01Component },
     { path: '2022/02', component: PuzzleYear2022Day02Component },
-    { path: '**', redirectTo: '/'},
+    { path: '**', redirectTo: ''},
 ];
 
 @NgModule({
