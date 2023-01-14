@@ -8,8 +8,9 @@ import { NbButtonGroupModule, NbButtonModule, NbCalendarModule, NbIconModule, Nb
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PuzzleYear2022Day01Component } from './views/2022/day-01/day-01.component';
 import { HomeComponent } from './views/home/home.component';
+import { PuzzleYear2022Day01Component } from './views/2022/day-01/day-01.component';
+import { PuzzleYear2022Day02Component } from './views/2022/day-02/day-02.component';
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
 
@@ -18,6 +19,7 @@ import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer
     AppComponent,
     HomeComponent,
     PuzzleYear2022Day01Component,
+    PuzzleYear2022Day02Component,
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
 ],
@@ -39,15 +41,15 @@ import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer
     NbCalendarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
 
 // Import the echarts core module, which provides the necessary interfaces for using echarts.
 import * as echarts from 'echarts/core';
 
-// Import bar charts, all suffixed with Chart
-import { BarChart } from 'echarts/charts';
+// Import all charts, all suffixed with Chart
+import { BarChart, LineChart } from 'echarts/charts';
 
 // Import the tooltip, title, rectangular coordinate system, dataset and transform components
 import {
@@ -57,6 +59,7 @@ import {
   DatasetComponent,
   TransformComponent,
   LegendComponent,
+  MarkPointComponent,
 } from 'echarts/components';
 
 // Features like Universal Transition and Label Layout
@@ -69,12 +72,14 @@ import { CanvasRenderer } from 'echarts/renderers';
 // Register the required components
 echarts.use([
   BarChart,
+  LineChart,
   TitleComponent,
   TooltipComponent,
   GridComponent,
   DatasetComponent,
   TransformComponent,
   LegendComponent,
+  MarkPointComponent,
   LabelLayout,
   UniversalTransition,
   CanvasRenderer

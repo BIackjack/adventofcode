@@ -35,16 +35,16 @@ export class AppComponent {
             },
             {
                 title: 'Day 2',
-                icon: 'checkmark-circle-2-outline',
+                icon: 'more-horizontal-outline',
                 link: '/2022/02',
                 pathMatch: 'full',
             },
-            {
-                title: 'Day 3',
-                icon: 'more-horizontal-outline',
-                link: '/2022/03',
-                pathMatch: 'full',
-            },
+            // {
+            //     title: 'Day 3',
+            //     icon: 'more-horizontal-outline',
+            //     link: '/2022/03',
+            //     pathMatch: 'full',
+            // },
         ];
     }
     
