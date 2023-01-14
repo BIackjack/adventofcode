@@ -1,0 +1,17 @@
+<app-puzzle-input-switcher year="2022" day="03" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+
+<div class="row-container" *ngFor="let row of part1Data">
+    <span class="char-string" *ngFor="let charString of row.strings">
+        <span *ngFor="let char of charString" [ngClass]="{'highlight': char === row.letterInCommon.label}">{{char}}</span>
+    </span>
+</div>
+
+<app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
+
+<div class="three-rows-container" *ngFor="let row of part2Data">
+    <div class="char-string" *ngFor="let charString of row.strings">
+        <span *ngFor="let char of charString" [ngClass]="{'highlight': char === row.letterInCommon.label}">{{char}}</span>
+    </div>
+</div>
+
+<app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer" [explanation]="part2Explanation"></app-puzzle-answer-printer>
