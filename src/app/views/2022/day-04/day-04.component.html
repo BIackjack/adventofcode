@@ -1,0 +1,56 @@
+<app-puzzle-input-switcher year="2022" day="04" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+
+<ng-container *ngIf="data">
+    <div class="interval-container" *ngFor="let intervalData of data; let i = index">
+        <span class="interval-number">#{{i + 1}}</span>
+
+        <div class="interval first" style="left: {{intervalData.firstInterval.graph?.left}}%; width: {{intervalData.firstInterval.graph?.width}}%">
+            {{intervalData.firstInterval.start}}
+
+            <ng-container *ngIf="intervalData.firstInterval.start !== intervalData.firstInterval.end">
+                ► {{intervalData.firstInterval.end}}
+            </ng-container>
+        </div>
+        
+        <div class="interval common" *ngIf="intervalData.inCommon" style="left: {{intervalData.inCommon.graph?.left}}%; width: {{intervalData.inCommon.graph?.width}}%">
+            {{intervalData.inCommon.start}} 
+
+            <ng-container *ngIf="intervalData.inCommon.start !== intervalData.inCommon.end">
+                ► {{intervalData.inCommon.end}}
+            </ng-container>
+        </div>
+        
+        <div class="interval second" style="left: {{intervalData.secondInterval.graph?.left}}%; width: {{intervalData.secondInterval.graph?.width}}%">
+            {{intervalData.secondInterval.start}}
+            
+            <ng-container *ngIf="intervalData.secondInterval.start !== intervalData.secondInterval.end">
+                ► {{intervalData.secondInterval.end}}
+            </ng-container>
+        </div>
+
+        <nb-icon *ngIf="intervalData.isOneIntervalContainedInTheOther" icon="radio-button-on-outline" status="success"></nb-icon>
+        <nb-icon *ngIf="intervalData.inCommon" icon="copy-outline" status="success"></nb-icon>
+    </div>
+
+    <aside class="legend">
+        <div class="legend-item">
+            <span class="legend-symbol legend-color first"></span> First interval
+        </div>
+        <div class="legend-item">
+            <span class="legend-symbol legend-color common"></span> Common between both intervals
+        </div>
+        <div class="legend-item">
+            <span class="legend-symbol legend-color second"></span> Second interval
+        </div>
+        <div class="legend-item">
+            <nb-icon class="legend-symbol" icon="radio-button-on-outline" status="success"></nb-icon> One interval is contained in the other
+        </div>
+        <div class="legend-item">
+            <nb-icon class="legend-symbol" icon="copy-outline" status="success"></nb-icon> Both intervals have a common part
+        </div>
+    </aside>
+</ng-container> 
+    
+<app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer"></app-puzzle-answer-printer>
+
+<app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer"></app-puzzle-answer-printer>

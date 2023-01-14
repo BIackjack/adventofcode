@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PuzzleYear2022Day01Component } from './views/2022/day-01/day-01.component';
 import { PuzzleYear2022Day02Component } from './views/2022/day-02/day-02.component';
 import { PuzzleYear2022Day03Component } from './views/2022/day-03/day-03.component';
+import { PuzzleYear2022Day04Component } from './views/2022/day-04/day-04.component';
 import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
     { path: '2022/01', component: PuzzleYear2022Day01Component },
     { path: '2022/02', component: PuzzleYear2022Day02Component },
     { path: '2022/03', component: PuzzleYear2022Day03Component },
+    { path: '2022/04', component: PuzzleYear2022Day04Component },
     { path: '**', redirectTo: ''},
 ];
 

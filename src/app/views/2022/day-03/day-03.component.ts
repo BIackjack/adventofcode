@@ -67,8 +67,6 @@ export class PuzzleYear2022Day03Component {
             const letterInCommon = firstLineSplit.find(char => secondLine.includes(char) && thirdLine.includes(char)) ?? '';
             const valueLetterInCommon = getLetterPriority(letterInCommon);
             
-            console.log(firstLineSplit, secondLine, thirdLine);
-
             this.part2Data.push({
                 strings: [firstLineSplit, secondLine.split(''), thirdLine.split('')],
                 letterInCommon: {

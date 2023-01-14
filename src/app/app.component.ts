@@ -45,10 +45,16 @@ export class AppComponent {
                 link: '/2022/03',
                 pathMatch: 'full',
             },
+            {
+                title: 'Day 4',
+                icon: 'checkmark-circle-2-outline',
+                link: '/2022/04',
+                pathMatch: 'full',
+            },
             // {
-            //     title: 'Day 4',
+            //     title: 'Day 5',
             //     icon: 'more-horizontal-outline',
-            //     link: '/2022/04',
+            //     link: '/2022/05',
             //     pathMatch: 'full',
             // },
         ];
