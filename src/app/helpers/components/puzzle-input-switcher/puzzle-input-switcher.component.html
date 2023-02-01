@@ -1,7 +1,7 @@
 <div id="toolbar">
-    <nb-button-group (valueChange)="onModeChanged($event)">
-        <button nbButtonToggle value="example" pressed="true">Example input</button>
-        <button nbButtonToggle value="personal">Personal input</button>
+    <nb-button-group>
+        <button nbButtonToggle (click)="onModeChanged('example')" pressed="true">Example input</button>
+        <button nbButtonToggle (click)="onModeChanged('personal')">Personal input</button>
     </nb-button-group>
 </div>
 

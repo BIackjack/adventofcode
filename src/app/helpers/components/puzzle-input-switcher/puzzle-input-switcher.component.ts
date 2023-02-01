@@ -60,8 +60,8 @@ export class PuzzleInputSwitcherComponent implements OnInit {
         }
     }
 
-    onModeChanged(event: Array<'example' | 'personal'>): void {
-        this.selectedMode = event[0];
+    onModeChanged(event: 'example' | 'personal'): void {
+        this.selectedMode = event;
         this.currentInput = this.inputs[this.selectedMode];
 
         this.isTextAreaPristine = true;
