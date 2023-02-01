@@ -5,9 +5,9 @@
     </nb-button-group>
 </div>
 
-<textarea nbInput fullWidth rows="15" [(ngModel)]="currentInput"></textarea>
+<textarea nbInput fullWidth rows="15" [(ngModel)]="currentInput" (ngModelChange)="isTextAreaPristine = false;"></textarea>
 
-<button id="run-btn" size="large" status="primary" nbButton (click)="onRunInput()">
+<button *ngIf="!isTextAreaPristine" id="run-btn" size="large" status="primary" nbButton (click)="onRunInput()">
     Run input
     <nb-icon icon="play-circle-outline"></nb-icon>
 </button> 

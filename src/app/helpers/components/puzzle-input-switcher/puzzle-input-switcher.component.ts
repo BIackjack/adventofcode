@@ -16,10 +16,10 @@ export class PuzzleInputSwitcherComponent implements OnInit {
         personal: '',
         example: '',
     }
-
     currentInput = '';
 
     selectedMode: 'example' | 'personal' = 'example';
+    isTextAreaPristine = true;
 
     constructor(private readonly httpClient: HttpClient) {
     }
@@ -35,6 +35,7 @@ export class PuzzleInputSwitcherComponent implements OnInit {
             if (this.inputs.example.length === 0) {
                 this.inputs.example = data;
                 this.currentInput = data;
+                this.onRunInput();
             }
         });
 
@@ -62,6 +63,9 @@ export class PuzzleInputSwitcherComponent implements OnInit {
     onModeChanged(event: Array<'example' | 'personal'>): void {
         this.selectedMode = event[0];
         this.currentInput = this.inputs[this.selectedMode];
+
+        this.isTextAreaPristine = true;
+        this.onRunInput();
     }
 
     onRunInput(): void {
