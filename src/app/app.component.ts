@@ -51,12 +51,12 @@ export class AppComponent {
                 link: '/2022/04',
                 pathMatch: 'full',
             },
-            // {
-            //     title: 'Day 5',
-            //     icon: 'more-horizontal-outline',
-            //     link: '/2022/05',
-            //     pathMatch: 'full',
-            // },
+            {
+                title: 'Day 5',
+                icon: 'more-horizontal-outline',
+                link: '/2022/05',
+                pathMatch: 'full',
+            },
         ];
     }
     

@@ -1,0 +1,38 @@
+<ng-container *ngIf="states.length">
+    <header>
+        <button nbButton appearance="ghost" status="primary" (click)="goToFirstState()" [disabled]="currentStateIndex === 0">
+            <nb-icon icon="arrowhead-left-outline"></nb-icon>
+        </button>
+        <button nbButton appearance="ghost" status="primary" (click)="goToPreviousState()" [disabled]="currentStateIndex === 0">
+            <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+        </button>
+
+        {{currentStateIndex + 1}} of {{states.length}} animations
+
+        <button nbButton appearance="ghost" status="primary" (click)="goToNextState()" [disabled]="currentStateIndex === states.length - 1">
+            <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+        </button>
+        <button nbButton appearance="ghost" status="primary" (click)="goToLastState()" [disabled]="currentStateIndex === states.length - 1">
+            <nb-icon icon="arrowhead-right-outline"></nb-icon>
+        </button>
+
+    </header>
+    
+    <p>{{currentState?.message}}</p>
+
+    <section class="stack-container">
+        <div class="stack" *ngFor="let stack of currentState?.stacks">
+            <div class="stack-label">{{stack.label}}</div>
+
+            <div class="crate" *ngFor="let crate of stack.elements; let isLastCrate = last"
+                [ngClass]="{'highlighted': isLastCrate && currentStateIndex === this.states.length - 1}">
+                {{crate}}
+            </div>
+
+            <ng-container *ngIf="currentState?.movingCrate as movingCrate">
+                <div class="crate moving-crate--src" *ngIf="movingCrate.srcStack === stack.label">{{movingCrate.crateLabel}}</div>
+                <div class="crate moving-crate--dst" *ngIf="movingCrate.dstStack === stack.label">{{movingCrate.crateLabel}}</div>
+            </ng-container>
+        </div>
+    </section>
+</ng-container>

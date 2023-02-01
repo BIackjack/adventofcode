@@ -13,8 +13,10 @@ import { PuzzleYear2022Day01Component } from './views/2022/day-01/day-01.compone
 import { PuzzleYear2022Day02Component } from './views/2022/day-02/day-02.component';
 import { PuzzleYear2022Day03Component } from './views/2022/day-03/day-03.component';
 import { PuzzleYear2022Day04Component } from './views/2022/day-04/day-04.component';
+import { PuzzleYear2022Day05Component } from './views/2022/day-05/day-05.component';
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
+import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/crates-animator.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,10 @@ import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer
     PuzzleYear2022Day02Component,
     PuzzleYear2022Day03Component,
     PuzzleYear2022Day04Component,
+    PuzzleYear2022Day05Component,
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
+    CratesAnimatorComponent,
 ],
   imports: [
     BrowserModule,

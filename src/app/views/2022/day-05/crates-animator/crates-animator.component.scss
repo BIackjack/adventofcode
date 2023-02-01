@@ -1,0 +1,57 @@
+.stack-container, header {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.stack-container {
+    min-height: 250px;
+}
+
+header {
+    align-items: center;
+    margin-top: 50px;
+}
+
+p {
+    text-align: center;
+    opacity: .7;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    min-width: 40px;
+}
+
+.crate {
+    border-width: 1px;
+    border-style: solid;
+    
+    &.highlighted {
+        background: transparent;
+        box-shadow: 0 0 8px white, 0 0 8px inset white;
+        text-shadow: 0px 0px 8px white;
+    }
+}
+
+.stack-label {
+    background: #36f;
+}
+
+.moving-crate--src {
+    color: #ff3d71;
+}
+
+.moving-crate--dst {
+    color: #00d68f;
+}
+
+.crate, .stack-label {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+}

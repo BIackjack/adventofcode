@@ -1,0 +1,6 @@
+<app-puzzle-input-switcher year="2022" day="05" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+
+<app-crates-animator [states]="part1States"></app-crates-animator>    
+<app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer"></app-puzzle-answer-printer>
+
+<app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer"></app-puzzle-answer-printer>
