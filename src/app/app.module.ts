@@ -14,6 +14,7 @@ import { PuzzleYear2022Day02Component } from './views/2022/day-02/day-02.compone
 import { PuzzleYear2022Day03Component } from './views/2022/day-03/day-03.component';
 import { PuzzleYear2022Day04Component } from './views/2022/day-04/day-04.component';
 import { PuzzleYear2022Day05Component } from './views/2022/day-05/day-05.component';
+import { PuzzleYear2022Day06Component } from './views/2022/day-06/day-06.component';
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
 import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/crates-animator.component';
@@ -27,6 +28,7 @@ import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/cra
     PuzzleYear2022Day03Component,
     PuzzleYear2022Day04Component,
     PuzzleYear2022Day05Component,
+    PuzzleYear2022Day06Component,
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
     CratesAnimatorComponent,

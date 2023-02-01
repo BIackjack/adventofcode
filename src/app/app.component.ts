@@ -57,6 +57,12 @@ export class AppComponent {
                 link: '/2022/05',
                 pathMatch: 'full',
             },
+            {
+                title: 'Day 6',
+                icon: 'checkmark-circle-2-outline',
+                link: '/2022/06',
+                pathMatch: 'full',
+            },
             // {
             //     title: 'Day 6',
             //     icon: 'more-horizontal-outline',
