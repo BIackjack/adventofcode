@@ -15,12 +15,12 @@ export class Stack<T = string> {
         return this.elements.splice(this.elements.length - nbToSlice);
     }
 
-    push = (...newElements: T[]) => {
+    push = (...newElements: T[]): void => {
         this.elements.push(...newElements);
     }
 
-    peek = () => {
-        return this.elements[this.elements.length - 1];
+    peek = (nbElements = 1) => {
+        return this.elements.slice(-1 * nbElements);
     }
 
     print = () => {

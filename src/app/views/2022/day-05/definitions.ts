@@ -6,8 +6,8 @@ export type Move = {
     nbMoves: number
 };
 
-export type MovingCrate = {
-    crateLabel: string;
+export type MovingCrates = {
+    nbCratesMoved: number;
     srcStack: string;
     dstStack: string;
 }
@@ -15,5 +15,5 @@ export type MovingCrate = {
 export type State = {
     stacks: Stack[];
     message: string;
-    movingCrate?: MovingCrate;
+    movingCrates?: MovingCrates;
 }

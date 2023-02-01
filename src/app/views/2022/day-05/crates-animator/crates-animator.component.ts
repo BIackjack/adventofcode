@@ -16,6 +16,20 @@ export class CratesAnimatorComponent implements OnChanges {
         this.currentState = changes['states'].currentValue[0];
     }
 
+    
+    public get nbMovedCrates(): number {
+        return this.currentState?.movingCrates?.nbCratesMoved ?? 0
+    }
+
+    public get srcStack(): string | undefined {
+        return this.currentState?.movingCrates?.srcStack;
+    }
+
+    public get dstStack(): string | undefined {
+        return this.currentState?.movingCrates?.dstStack;
+    }
+    
+
     goToFirstState() {
         this.currentStateIndex = 0;
         this.currentState = this.states[this.currentStateIndex];

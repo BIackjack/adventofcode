@@ -17,22 +17,23 @@
         </button>
 
     </header>
-    
+
     <p>{{currentState?.message}}</p>
 
     <section class="stack-container">
         <div class="stack" *ngFor="let stack of currentState?.stacks">
             <div class="stack-label">{{stack.label}}</div>
 
-            <div class="crate" *ngFor="let crate of stack.elements; let isLastCrate = last"
-                [ngClass]="{'highlighted': isLastCrate && currentStateIndex === this.states.length - 1}">
+            <div class="crate"
+                *ngFor="let crate of stack.elements; let isLastCrate = last; let crateIndex = index"
+                [ngClass]="{
+                    'highlighted': isLastCrate && currentStateIndex === this.states.length - 1,
+                    'moving-crate--src': crateIndex > stack.elements.length - nbMovedCrates - 1 && stack.label === srcStack,
+                    'moving-crate--dst': crateIndex > stack.elements.length - nbMovedCrates - 1 && stack.label === dstStack
+                }">
+                
                 {{crate}}
             </div>
-
-            <ng-container *ngIf="currentState?.movingCrate as movingCrate">
-                <div class="crate moving-crate--src" *ngIf="movingCrate.srcStack === stack.label">{{movingCrate.crateLabel}}</div>
-                <div class="crate moving-crate--dst" *ngIf="movingCrate.dstStack === stack.label">{{movingCrate.crateLabel}}</div>
-            </ng-container>
         </div>
     </section>
 </ng-container>
