@@ -1,0 +1,7 @@
+<div *ngFor="let row of rows" class="row">
+    <span class="prefix">{{row.prefix}}</span>
+    <nb-icon *ngIf="row.icon" [icon]="row.icon"></nb-icon>
+    <span class="label" [ngClass]="{'highlighted': row.isHighlighted}">
+        {{row.label}}
+    </span>
+</div>

@@ -1,0 +1,28 @@
+:host {
+    font-family: 'Consolas' !important;
+    white-space: pre;
+}
+
+.prefix {
+    font-size: 22px;
+    line-height: 26px;
+    position: relative;
+    top: 4px;
+}
+
+.label {
+    font-family: 'Consolas' !important;
+    font-size: 17px;
+    line-height: 22px;
+}
+
+nb-icon {
+    font-size: 22px;
+    margin-left: 8px;
+}
+
+.highlighted {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+}

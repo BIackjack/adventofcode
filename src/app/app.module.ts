@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbButtonGroupModule, NbButtonModule, NbCalendarModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule } from '@nebular/theme';
+import { NbButtonGroupModule, NbButtonModule, NbCalendarModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbSidebarModule, NbThemeModule, NbTreeGridModule } from '@nebular/theme';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { PuzzleYear2022Day03Component } from './views/2022/day-03/day-03.compone
 import { PuzzleYear2022Day04Component } from './views/2022/day-04/day-04.component';
 import { PuzzleYear2022Day05Component } from './views/2022/day-05/day-05.component';
 import { PuzzleYear2022Day06Component } from './views/2022/day-06/day-06.component';
+import { PuzzleYear2022Day07Component } from './views/2022/day-07/day-07.component';
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
 import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/crates-animator.component';
@@ -29,9 +30,11 @@ import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/cra
     PuzzleYear2022Day04Component,
     PuzzleYear2022Day05Component,
     PuzzleYear2022Day06Component,
+    PuzzleYear2022Day07Component,
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
     CratesAnimatorComponent,
+    TreeWrapperComponent,
 ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/cra
     NbEvaIconsModule,
     NbIconModule,
     NbCalendarModule,
+    NbTreeGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -78,6 +82,7 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 // Import the Canvas renderer
 // Note that including the CanvasRenderer or SVGRenderer is a required step
 import { CanvasRenderer } from 'echarts/renderers';
+import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrapper.component';
 
 // Register the required components
 echarts.use([
