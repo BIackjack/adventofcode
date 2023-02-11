@@ -1,0 +1,51 @@
+.chart {
+    height: 800px;
+    width: 1000px;
+    margin: auto;
+}
+
+::ng-deep {
+    .tooltip {
+        position: relative;
+
+        li {
+            color: #333 !important;
+        }
+
+        ul {
+            margin: 0 0 10px -25px;
+        }
+
+        strong {
+            text-align: center;
+            width: 100%;
+            display: inline-block;
+            font-weight: bold;
+            margin: 5px 0 15px;
+            font-size: 18px;
+        }
+
+        .green-text {
+            color: #258e38;
+        }
+        
+        .red-text {
+            color: #d43434;
+        }
+
+        .value {
+            position: absolute;
+            top: -25px;
+            right: -25px;
+            background: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: -5px 5px 9px #00000045;
+        }
+    }
+}

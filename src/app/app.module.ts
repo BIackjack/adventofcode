@@ -16,9 +16,11 @@ import { PuzzleYear2022Day04Component } from './views/2022/day-04/day-04.compone
 import { PuzzleYear2022Day05Component } from './views/2022/day-05/day-05.component';
 import { PuzzleYear2022Day06Component } from './views/2022/day-06/day-06.component';
 import { PuzzleYear2022Day07Component } from './views/2022/day-07/day-07.component';
+import { PuzzleYear2022Day08Component } from './views/2022/day-08/day-08.component';
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
 import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/crates-animator.component';
+import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrapper.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/cra
     PuzzleYear2022Day05Component,
     PuzzleYear2022Day06Component,
     PuzzleYear2022Day07Component,
+    PuzzleYear2022Day08Component,
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
     CratesAnimatorComponent,
@@ -74,6 +77,8 @@ import {
   TransformComponent,
   LegendComponent,
   MarkPointComponent,
+  VisualMapPiecewiseComponent,
+  VisualMapContinuousComponent,
 } from 'echarts/components';
 
 // Features like Universal Transition and Label Layout
@@ -82,7 +87,8 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 // Import the Canvas renderer
 // Note that including the CanvasRenderer or SVGRenderer is a required step
 import { CanvasRenderer } from 'echarts/renderers';
-import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrapper.component';
+
+import 'echarts-gl';
 
 // Register the required components
 echarts.use([
@@ -97,5 +103,7 @@ echarts.use([
   MarkPointComponent,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  VisualMapPiecewiseComponent,
+  VisualMapContinuousComponent,
+  CanvasRenderer,
 ]);
