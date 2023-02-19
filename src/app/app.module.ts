@@ -17,6 +17,7 @@ import { PuzzleYear2022Day05Component } from './views/2022/day-05/day-05.compone
 import { PuzzleYear2022Day06Component } from './views/2022/day-06/day-06.component';
 import { PuzzleYear2022Day07Component } from './views/2022/day-07/day-07.component';
 import { PuzzleYear2022Day08Component } from './views/2022/day-08/day-08.component';
+import { PuzzleYear2022Day09Component } from './views/2022/day-09/day-09.component';
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
 import { CratesAnimatorComponent } from './views/2022/day-05/crates-animator/crates-animator.component';
@@ -34,6 +35,7 @@ import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrap
     PuzzleYear2022Day06Component,
     PuzzleYear2022Day07Component,
     PuzzleYear2022Day08Component,
+    PuzzleYear2022Day09Component,
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
     CratesAnimatorComponent,
@@ -66,7 +68,7 @@ export class AppModule { }
 import * as echarts from 'echarts/core';
 
 // Import all charts, all suffixed with Chart
-import { BarChart, LineChart } from 'echarts/charts';
+import { BarChart, LineChart, HeatmapChart } from 'echarts/charts';
 
 // Import the tooltip, title, rectangular coordinate system, dataset and transform components
 import {
@@ -94,6 +96,7 @@ import 'echarts-gl';
 echarts.use([
   BarChart,
   LineChart,
+  HeatmapChart,
   TitleComponent,
   TooltipComponent,
   GridComponent,
