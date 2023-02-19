@@ -77,7 +77,7 @@ export class AppComponent {
             },
             {
                 title: 'Day 9',
-                icon: 'more-horizontal-outline',
+                icon: 'checkmark-circle-2-outline',
                 link: '/2022/09',
                 pathMatch: 'full',
             },
