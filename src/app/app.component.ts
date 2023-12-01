@@ -23,6 +23,16 @@ export class AppComponent {
                 status: 'primary',
             },
         },
+        {
+            title: 'Year 2023',
+            expanded: true,
+            icon: 'calendar-outline',
+            children: this.year2023MenuItems,
+            badge: {
+                text: `${this.year2023MenuItems.length}`,
+                status: 'primary',
+            },
+        },
     ];
 
     private get year2022MenuItems(): NbMenuItem[] {
@@ -77,7 +87,7 @@ export class AppComponent {
             },
             {
                 title: 'Day 9',
-                icon: 'checkmark-circle-2-outline',
+                icon: 'more-horizontal-outline',
                 link: '/2022/09',
                 pathMatch: 'full',
             },
@@ -87,6 +97,17 @@ export class AppComponent {
             //     link: '/2022/10',
             //     pathMatch: 'full',
             // },
+        ];
+    }
+
+    private get year2023MenuItems(): NbMenuItem[] {
+        return [
+            {
+                title: 'Day 1',
+                icon: 'checkmark-circle-2-outline',
+                link: '/2023/01',
+                pathMatch: 'full',
+            },
         ];
     }
     

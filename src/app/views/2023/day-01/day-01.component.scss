@@ -1,0 +1,23 @@
+:host {
+    font-size: 20px;
+    font-family: Consolas;
+    color: #888;
+}
+
+.row-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.char-string {
+    display: flex;
+    gap: 8px;
+}
+
+.highlight {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+}

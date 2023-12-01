@@ -9,10 +9,14 @@ import { PuzzleYear2022Day06Component } from './views/2022/day-06/day-06.compone
 import { PuzzleYear2022Day07Component } from './views/2022/day-07/day-07.component';
 import { PuzzleYear2022Day08Component } from './views/2022/day-08/day-08.component';
 import { PuzzleYear2022Day09Component } from './views/2022/day-09/day-09.component';
+
+import { PuzzleYear2023Day01Component } from './views/2023/day-01/day-01.component';
+
 import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
+    
     { path: '2022/01', component: PuzzleYear2022Day01Component },
     { path: '2022/02', component: PuzzleYear2022Day02Component },
     { path: '2022/03', component: PuzzleYear2022Day03Component },
@@ -22,6 +26,9 @@ const routes: Routes = [
     { path: '2022/07', component: PuzzleYear2022Day07Component },
     { path: '2022/08', component: PuzzleYear2022Day08Component },
     { path: '2022/09', component: PuzzleYear2022Day09Component },
+
+    { path: '2023/01', component: PuzzleYear2023Day01Component },
+
     { path: '**', redirectTo: ''},
 ];
 
