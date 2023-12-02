@@ -11,6 +11,7 @@ import { PuzzleYear2022Day08Component } from './views/2022/day-08/day-08.compone
 import { PuzzleYear2022Day09Component } from './views/2022/day-09/day-09.component';
 
 import { PuzzleYear2023Day01Component } from './views/2023/day-01/day-01.component';
+import { PuzzleYear2023Day02Component } from './views/2023/day-02/day-02.component';
 
 import { HomeComponent } from './views/home/home.component';
 
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: '2022/09', component: PuzzleYear2022Day09Component },
 
     { path: '2023/01', component: PuzzleYear2023Day01Component },
+    { path: '2023/02', component: PuzzleYear2023Day02Component },
 
     { path: '**', redirectTo: ''},
 ];

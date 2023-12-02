@@ -1,0 +1,45 @@
+<app-puzzle-input-switcher year="2023" day="02" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+
+<div class="game-container" *ngFor="let game of data">
+    <nb-icon 
+        [icon]="game.isGameValid ? 'checkmark-outline' : 'close-outline'"
+        [class.highlight]="game.isGameValid"
+        class="game-icon"
+    ></nb-icon>
+    
+    <span class="game-label" [class.highlight]="game.isGameValid">Game {{game.gameId}}</span>
+
+    <div class="game-details">
+        <div class="round-container">
+            <div class="round-row" *ngFor="let round of game.rounds; let roundIndex = index">
+                <div class="round-row-content">
+                    <span class="highlight digit blue">{{round.nbBlue}}</span>
+                    <span class="highlight digit green">{{round.nbGreen}}</span>
+                    <span class="highlight digit red">{{round.nbRed}}</span>
+                </div>
+                
+                <span class="round-label">Round {{roundIndex + 1}}</span>
+                
+                <nb-icon [icon]="round.isRoundValid ? 'checkmark-outline' : 'close-outline'"></nb-icon>
+            </div>
+        </div>
+        
+        <div class="minima-container">
+            <span class="minima-digits">
+                <span class="highlight digit blue">{{game.minimalNbBlue}}</span>
+                <span class="highlight digit green">{{game.minimalNbGreen}}</span>
+                <span class="highlight digit red">{{game.minimalNbRed}}</span>
+            </span>
+            <span class="minima-label">Minima</span>
+        </div>
+
+        <div class="power-container">
+            <span class="power-value highlight">{{game.power}}</span>
+            <span class="power-label">Power</span>
+        </div>
+    </div>
+</div>
+
+<app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
+
+<app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer" [explanation]="part2Explanation"></app-puzzle-answer-printer>
