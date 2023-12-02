@@ -66,7 +66,9 @@ import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrap
     NbCalendarModule,
     NbTreeGridModule,
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
@@ -98,6 +100,7 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
 import 'echarts-gl';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Register the required components
 echarts.use([

@@ -9,10 +9,15 @@ import { NbMenuItem } from '@nebular/theme';
 export class AppComponent {
     items: NbMenuItem[] = [
         {
-            title: 'Year 2020',
-            group: true,
+            title: 'Year 2023',
+            expanded: true,
             icon: 'calendar-outline',
-        }, 
+            children: this.year2023MenuItems,
+            badge: {
+                text: `${this.year2023MenuItems.length}`,
+                status: 'primary',
+            },
+        },
         {
             title: 'Year 2022',
             expanded: true, // 2022 is expanded by default
@@ -20,16 +25,6 @@ export class AppComponent {
             children: this.year2022MenuItems,
             badge: {
                 text: `${this.year2022MenuItems.length}`,
-                status: 'primary',
-            },
-        },
-        {
-            title: 'Year 2023',
-            expanded: true,
-            icon: 'calendar-outline',
-            children: this.year2023MenuItems,
-            badge: {
-                text: `${this.year2023MenuItems.length}`,
                 status: 'primary',
             },
         },
