@@ -1,6 +1,13 @@
 <div id="toolbar">
     <nb-button-group>
-        <button nbButtonToggle (click)="onModeChanged('example')" pressed="true">Example input</button>
+        <button
+            nbButtonToggle
+            *ngFor="let _ of [].constructor(nbOfExamples); let index = index"
+            (click)="onModeChanged(index)"
+            [pressed]="index === 0"
+        >
+            Example input #{{index + 1}}
+        </button>
         <button nbButtonToggle (click)="onModeChanged('personal')">Personal input</button>
     </nb-button-group>
 </div>

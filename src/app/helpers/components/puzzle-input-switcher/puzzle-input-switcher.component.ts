@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { number } from 'echarts';
 
 @Component({
     selector: 'app-puzzle-input-switcher',
@@ -9,16 +10,17 @@ import { HttpClient } from '@angular/common/http';
 export class PuzzleInputSwitcherComponent implements OnInit {
     @Input() day!: string;
     @Input() year!: string;
+    @Input() nbOfExamples = 1;
 
     @Output() inputRun: EventEmitter<string> = new EventEmitter<string>();
 
     inputs = {
         personal: '',
-        example: '',
+        examples: [''],
     }
     currentInput = '';
 
-    selectedMode: 'example' | 'personal' = 'example';
+    selectedMode: `example-${number}` | 'personal' = 'example-0';
     isTextAreaPristine = true;
 
     constructor(private readonly httpClient: HttpClient) {
@@ -27,22 +29,37 @@ export class PuzzleInputSwitcherComponent implements OnInit {
     ngOnInit(): void {
         this.checkInputs();
 
-        this.httpClient
-        .get(`assets/inputs/${this.year}/${this.day}-example`, {
-            responseType: 'text',
-        })
-        .subscribe((data) => {
-            if (this.inputs.example.length === 0) {
-                this.inputs.example = data;
-                this.currentInput = data;
-                this.onRunInput();
+        this.inputs.examples = new Array(this.nbOfExamples).fill('');
+
+        if (this.nbOfExamples === 1) {
+            this.httpClient
+            .get(`assets/inputs/${this.year}/${this.day}-example`, {responseType: 'text'})
+            .subscribe((data) => {
+                if (this.inputs.examples[0].length === 0) {
+                    this.inputs.examples[0] = data;
+                    this.currentInput = data;
+                    this.onRunInput();
+                }
+            });
+        } else {
+            for (let exampleIndex = 0; exampleIndex < this.nbOfExamples; exampleIndex++) {
+                this.httpClient
+                .get(`assets/inputs/${this.year}/${this.day}-example-${exampleIndex + 1}`, {responseType: 'text'})
+                .subscribe((data) => {
+                    if (this.inputs.examples[exampleIndex].length === 0) {
+                        this.inputs.examples[exampleIndex] = data;
+
+                        if (exampleIndex === 0) {
+                            this.currentInput = data;
+                            this.onRunInput();
+                        }
+                    }
+                });
             }
-        });
+        }
 
         this.httpClient
-        .get(`assets/inputs/${this.year}/${this.day}-personal`, {
-            responseType: 'text',
-        })
+        .get(`assets/inputs/${this.year}/${this.day}-personal`, {responseType: 'text'})
         .subscribe((data) => {
             if (this.inputs.personal.length === 0) {
                 this.inputs.personal = data;
@@ -60,9 +77,9 @@ export class PuzzleInputSwitcherComponent implements OnInit {
         }
     }
 
-    onModeChanged(event: 'example' | 'personal'): void {
-        this.selectedMode = event;
-        this.currentInput = this.inputs[this.selectedMode];
+    onModeChanged(event: number | 'personal'): void {
+        this.selectedMode = event === 'personal' ? 'personal' : `example-${event}`;
+        this.currentInput = event === 'personal' ? this.inputs.personal : this.inputs.examples[event];
 
         this.isTextAreaPristine = true;
         this.onRunInput();

@@ -1,4 +1,4 @@
-<app-puzzle-input-switcher year="2023" day="01" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+<app-puzzle-input-switcher year="2023" day="01" [nbOfExamples]="2" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
 
 <div class="row-container" *ngFor="let row of part1Data">
     <span class="char-string" *ngFor="let charData of row.chars" [class.highlight]="charData.isHighlighted">
