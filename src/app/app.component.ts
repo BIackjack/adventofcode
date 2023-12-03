@@ -111,7 +111,7 @@ export class AppComponent {
             },
             {
                 title: 'Day 3',
-                icon: 'more-horizontal-outline',
+                icon: 'checkmark-circle-2-outline',
                 link: '/2023/03',
                 pathMatch: 'full',
             },

@@ -35,18 +35,18 @@
     position: relative;
 
     &.aoe {
-        color: #24e0ff;
+        color: #26e0ffb2;
 
         &::after {
             content: "";
             width: 55px;
-            height: 57px;
+            height: 55px;
             position: absolute;
-            top: -17px;
+            top: -18px;
             left: -13px;
             border-radius: 5px;
             border: 1px currentColor solid;
-            box-shadow: 0 0 10px -3px, 0 0 10px -3px inset;
+            box-shadow: 0 0 10px -3px, 0 0 20px -3px inset;
         }
     }
 }

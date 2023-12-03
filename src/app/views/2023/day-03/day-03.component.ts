@@ -9,28 +9,18 @@ type FormattedCell = {
 }
 type Data = FormattedCell[][];
 
-type DigitCell = {
-    type: 'digit';
-    char: string;
-    originOfCorrespondingNumber: StringIndex;
-}
-
-type SymbolCell = {
-    type: 'symbol';
-    char: string;
-    adjacentNumberIndexes: Set<StringIndex>;
-}
-
 type Index = {
     line: number;
     column: number;
 };
-
 type StringIndex = `${Index['line']}_${Index['column']}`;
 
 type NumberDictionary = Record<StringIndex, {
     value: string;
-    isAccepted: boolean;
+    isAccepted: {
+        inPart1: boolean;
+        inPart2: boolean;
+    };
 }>
 
 type DigitDictionary = Record<StringIndex, {
@@ -43,16 +33,13 @@ type SymbolDictionary = Record<StringIndex, {
     adjacentNumberIndexes: Set<StringIndex>;
 }>
 
-type CellDictionary = Record<StringIndex, DigitCell | SymbolCell>
-
 @Component({
   selector: 'year-2023-day-03',
   templateUrl: './day-03.component.html',
   styleUrls: ['./day-03.component.scss']
 })
 export class PuzzleYear2023Day03Component {
-    data: Data | undefined;
-    
+    part1Data: Data = [];
     part1Answer: number | string = 0;
     part1Explanation = '';
     
@@ -63,38 +50,6 @@ export class PuzzleYear2023Day03Component {
     onInputRun(rawInput: string) {
         const input = rawInput.replaceAll('\r\n', '\n');
         const lines = input.split('\n');
-
-        const symbolRegex = /[-!$%^#@&*()_+|~=`{}\[\]:";'<>?,\/]/g;
-        const isSymbolArray = lines.map(line => line.split('').map(char => char.search(symbolRegex) >= 0));
-        const isAdjacentToSymbolArray = isSymbolArray.map((innerArray, lineIndex) => innerArray.map((cell, colIndex) => {
-            return cell
-                || isSymbolArray[lineIndex - 1]?.[colIndex - 1]
-                || isSymbolArray[lineIndex - 1]?.[colIndex]
-                || isSymbolArray[lineIndex - 1]?.[colIndex + 1]
-                || isSymbolArray[lineIndex]?.[colIndex - 1]
-                || isSymbolArray[lineIndex]?.[colIndex + 1]
-                || isSymbolArray[lineIndex + 1]?.[colIndex - 1]
-                || isSymbolArray[lineIndex + 1]?.[colIndex]
-                || isSymbolArray[lineIndex + 1]?.[colIndex + 1]
-        }));
-
-        const validDigits: string[] = [];
-        lines.forEach((line, lineIndex) => {
-            const matchedNumbers = [...line.matchAll(/\d+/g)];
-            matchedNumbers.forEach(matchedNumber => {
-                const startIndex = matchedNumber.index ?? 0;
-                const numberLength = matchedNumber[0].length;
-                if (isAdjacentToSymbolArray[lineIndex].slice(startIndex, startIndex + numberLength).some(b => b)) {
-                    validDigits.push(matchedNumber[0]);
-                }
-            })
-        });
-
-        const part1 = sum(...validDigits.map(Number))
-        console.log(part1);
-
-        // ------------------------
-
         const symbolDictionary: SymbolDictionary = {};
         const digitDictionary: DigitDictionary = {};
         const numberDictionary: NumberDictionary = {};
@@ -132,23 +87,60 @@ export class PuzzleYear2023Day03Component {
 
                 numberDictionary[`${lineIndex}_${startIndex}`] = {
                     value: matchedNumber[0],
-                    isAccepted: false
+                    isAccepted: {
+                        inPart1: false,
+                        inPart2: false,
+                    }
                 };
             });
         });
 
-        // Handle adjacentNumbers for star characters
-        lines.forEach((line, lineIndex) => {
-            line.split('').forEach((char, columnIndex) => {
-                if (char !== '*') {return;}
+        Object.entries(symbolDictionary).forEach(([stringIndex, {char, adjacentNumberIndexes}]) => {
+            const [lineIndex, columnIndex] = stringIndex.split('_');
+            
+            for (let innerLineIndex = -1; innerLineIndex <= 1; innerLineIndex++) {
+                for (let innerColumnIndex = -1; innerColumnIndex <= 1; innerColumnIndex++) {
+                    const indexToCheck = `${+lineIndex + innerLineIndex}_${+columnIndex + innerColumnIndex}` as const;
+                    const origin = digitDictionary[indexToCheck]?.originOfCorrespondingNumber;
+                    
+                    // Handle number adjacent to digits (part 1)
+                    if (origin) {
+                        numberDictionary[origin].isAccepted.inPart1 = true;
+                    }
 
-                for (let innerLineIndex = -1; innerLineIndex <= 1; innerLineIndex++) {
-                    for (let innerColumnIndex = -1; innerColumnIndex <= 1; innerColumnIndex++) {
-                        const indexToCheck = `${lineIndex + innerLineIndex}_${columnIndex + innerColumnIndex}` as const;
-                        const origin = digitDictionary[indexToCheck]?.originOfCorrespondingNumber;
-                        if (origin) {
-                            symbolDictionary[`${lineIndex}_${columnIndex}`]?.adjacentNumberIndexes.add(origin);
-                        }
+                    // Handle adjacentNumbers for star characters (part 2)
+                    if (origin && char === '*') {
+                        adjacentNumberIndexes.add(origin);
+                    }
+                }
+            }
+        });
+
+        const part1Numbers = Object.values(numberDictionary).filter(({isAccepted}) => isAccepted.inPart1).map(({value}) => value);
+        this.part1Answer = sum(...part1Numbers);
+        this.part1Explanation = part1Numbers.join(' + ');
+
+        this.part1Data = lines.map((line, lineIndex) => {
+            return line.split('').map((char, columnIndex): FormattedCell => {
+                const stringIndex = `${lineIndex}_${columnIndex}` as const;
+                if (symbolDictionary[stringIndex]) {
+                    return {
+                        text: char,
+                        hasAreaOfEffect: true,
+                        isHighlighted: true,
+                    }
+                } else if (digitDictionary[stringIndex]) {
+                    const origin = digitDictionary[stringIndex].originOfCorrespondingNumber;
+                    return {
+                        text: char,
+                        isHighlighted: numberDictionary[origin].isAccepted.inPart1,
+                        hasAreaOfEffect: false,
+                    }
+                } else {
+                    return {
+                        text: ' ',
+                        hasAreaOfEffect: false,
+                        isHighlighted: false,
                     }
                 }
             });
@@ -159,7 +151,7 @@ export class PuzzleYear2023Day03Component {
         .map(({adjacentNumberIndexes}) => {
             return [...adjacentNumberIndexes].map(numberStringIndex => {
                 // Side effect in map 😱
-                numberDictionary[numberStringIndex].isAccepted = true;
+                numberDictionary[numberStringIndex].isAccepted.inPart2 = true;
                 return numberDictionary[numberStringIndex].value;
             });
         });
@@ -181,7 +173,7 @@ export class PuzzleYear2023Day03Component {
                     const origin = digitDictionary[stringIndex].originOfCorrespondingNumber;
                     return {
                         text: char,
-                        isHighlighted: numberDictionary[origin].isAccepted,
+                        isHighlighted: numberDictionary[origin].isAccepted.inPart2,
                         hasAreaOfEffect: false,
                     }
                 } else {
