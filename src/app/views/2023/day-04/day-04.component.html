@@ -1,0 +1,29 @@
+<app-puzzle-input-switcher year="2023" day="04" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+
+<div class="card-container" *ngFor="let card of data; let cardIndex = index">
+    <div class="card-label">Card {{cardIndex + 1}}</div>
+    <div class="card-details">
+        <div class="section winning-numbers-container">
+            <span class="section-label">Winning numbers</span>
+            <span *ngFor="let number of card.winningNumbers" class="number winning-number">{{number}}</span>
+        </div>
+        <div class="section my-numbers-container">
+            <span class="section-label">My numbers</span>
+            <span
+                *ngFor="let number of card.myNumbers"
+                class="number my-number"
+                [class.highlight]="number.isHighlighted"
+            >
+                {{number.value}}
+            </span>
+        </div>
+        <div class="section nb-matches-container">
+            <span class="section-label"># of matches</span>
+            <span class="nb-matches highlight">{{card.nbOfMatches}}</span>
+        </div>
+    </div>
+</div>
+
+<app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
+
+<app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer" [explanation]="part2Explanation"></app-puzzle-answer-printer>

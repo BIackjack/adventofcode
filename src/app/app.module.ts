@@ -23,6 +23,7 @@ import { PuzzleYear2022Day09Component } from './views/2022/day-09/day-09.compone
 import { PuzzleYear2023Day01Component } from './views/2023/day-01/day-01.component';
 import { PuzzleYear2023Day02Component } from './views/2023/day-02/day-02.component';
 import { PuzzleYear2023Day03Component } from './views/2023/day-03/day-03.component';
+import { PuzzleYear2023Day04Component } from './views/2023/day-04/day-04.component';
 
 import { PuzzleInputSwitcherComponent } from './helpers/components/puzzle-input-switcher/puzzle-input-switcher.component';
 import { PuzzleAnswerPrinterComponent } from './helpers/components/puzzle-answer-printer/puzzle-answer-printer.component';
@@ -33,6 +34,7 @@ import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrap
   declarations: [
     AppComponent,
     HomeComponent,
+    
     PuzzleYear2022Day01Component,
     PuzzleYear2022Day02Component,
     PuzzleYear2022Day03Component,
@@ -42,9 +44,12 @@ import { TreeWrapperComponent } from './views/2022/day-07/tree-wrapper/tree-wrap
     PuzzleYear2022Day07Component,
     PuzzleYear2022Day08Component,
     PuzzleYear2022Day09Component,
+
     PuzzleYear2023Day01Component,
     PuzzleYear2023Day02Component,
     PuzzleYear2023Day03Component,
+    PuzzleYear2023Day04Component,
+
     PuzzleInputSwitcherComponent,
     PuzzleAnswerPrinterComponent,
     CratesAnimatorComponent,
