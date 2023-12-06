@@ -1,0 +1,55 @@
+:host {
+    font-size: 18px;
+    font-family: Consolas;
+    color: #888;
+}
+
+.card {
+    &-container {
+        display: flex;
+        gap: 30px;
+        margin: 50px;
+    }
+
+    &-label {
+        writing-mode: sideways-lr;
+        text-align: center;
+        border-right: 2px dashed;
+        padding-right: 5px;
+    }
+}
+
+.highlight {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px currentColor;
+}
+
+.section {
+    display: flex;
+    min-height: 40px;
+  margin-bottom: 5px;
+
+    &-label {
+        width: 180px;
+        margin: auto 0;
+    }
+}
+
+.number {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 50px;
+    text-align: center;
+    border: 1px solid;
+    margin: 5px 5px;
+    line-height: 27px;
+}
+
+.nb-matches {
+    font-size: 30px;
+    margin: 10px 5px;
+}
+
+.winning-number {color: white}

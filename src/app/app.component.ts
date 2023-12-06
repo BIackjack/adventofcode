@@ -121,6 +121,12 @@ export class AppComponent {
                 link: '/2023/04',
                 pathMatch: 'full',
             },
+            {
+                title: 'Day 5',
+                icon: 'more-horizontal-outline',
+                link: '/2023/05',
+                pathMatch: 'full',
+            },
         ];
     }
     
