@@ -65,6 +65,6 @@ export class PuzzleYear2023Day06Component {
                 nb++;
             }
         }
-        debugger
+        this.part2Answer = product(nb);
     }
 }
