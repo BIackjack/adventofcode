@@ -5,6 +5,7 @@
 }
 
 body {
+    --bg: #151a30;
     overflow-x: hidden;
-    background-color: #151a30;
+    background-color: var(--bg);
 }

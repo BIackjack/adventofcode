@@ -9,14 +9,18 @@ type Copy = {
 type MyNumber = {
     value: number;
     isHighlighted: boolean;
+    color: string;
 }
 
+type WinningNumber = Pick<MyNumber, 'value' | 'color'>
+
 type FormattedLine = {
-    winningNumbers: number[];
+    winningNumbers: WinningNumber[];
     myNumbers: MyNumber[];
     nbOfMatches: number;
     copies: Copy[];
     totalNbOfCards: number;
+    nbPoints: number;
 }
 
 type Data = FormattedLine[];
@@ -35,6 +39,10 @@ export class PuzzleYear2023Day04Component {
     part2Answer: number | string  = 0;
     part2Explanation = '';
 
+    trackByIndex(index: number) {
+        return index;
+    }
+
     onInputRun(rawInput: string) {
         const input = rawInput.replaceAll('\r\n', '\n');
         const lines = input.split('\n');
@@ -42,23 +50,35 @@ export class PuzzleYear2023Day04Component {
         this.data = lines.map((line) => {
             const allNumbers = line.split(': ')[1].split(' | ');
             const [winningNumbers, myNumbers] = allNumbers.map(numbers => numbers.split(' ').filter(x => !!x).map(Number))
-            const myFormattedNumbers: MyNumber[] = myNumbers.map(myNumber => ({
-                value: myNumber,
-                isHighlighted: winningNumbers.includes(myNumber),
-            }))
+            
+            const myFormattedNumbers: MyNumber[] = myNumbers.map(myNumber => {
+                const isHighlighted = winningNumbers.includes(myNumber);
+                return {
+                    value: myNumber,
+                    isHighlighted,
+                    color: isHighlighted ? `hsl(${myNumber * 3.6} 100% 50%)` : '#888'
+                };
+            });
+            
             const nbOfMatches = myFormattedNumbers.filter(({isHighlighted}) => isHighlighted).length;
+            
             return {
                 myNumbers: myFormattedNumbers,
-                winningNumbers,
+                winningNumbers: winningNumbers.map(value => ({value, color: `hsl(${value * 3.6} 100% 50%)`})),
                 nbOfMatches,
                 copies: [],
                 totalNbOfCards: 1, // Original
+                nbPoints: 0,
             };
         });
 
-        const nbOfMatchesPart1 = this.data.map(({nbOfMatches}) => nbOfMatches ? 2 ** (nbOfMatches - 1) : 0);
-        this.part1Answer = sum(...nbOfMatchesPart1);
-        this.part1Explanation = nbOfMatchesPart1.filter(x => !!x).join(' + ');
+        this.data.forEach((data) => {
+            data.nbPoints = data.nbOfMatches ? 2 ** (data.nbOfMatches - 1) : 0;
+        });
+
+        this.part1Answer = sum(...this.data.map(({nbPoints}) => nbPoints));
+        this.part1Explanation = this.data.map(({nbPoints}) => nbPoints).filter(x => !!x).join(' + ');
+        console.log(1);
         
         // Handles copies for part 2
         this.data.forEach((line, lineIndex) => {
@@ -77,5 +97,18 @@ export class PuzzleYear2023Day04Component {
         const part2Data = this.data.map(({totalNbOfCards}) => totalNbOfCards);
         this.part2Answer = sum(...part2Data);
         this.part2Explanation = part2Data.join(' + ');
+
+        // Sort numbers to improve readability
+
+        this.data.forEach(data => {
+            data.winningNumbers.sort((a, b) => a.value - b.value);
+            data.myNumbers.sort((a, b) => {
+                if (a.isHighlighted === b.isHighlighted) {
+                    return a.value - b.value;
+                }
+
+                return a.isHighlighted ? -1 : 1;
+            })
+        });
     }
 }

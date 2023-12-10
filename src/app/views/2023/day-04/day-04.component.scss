@@ -28,11 +28,15 @@
 .section {
     display: flex;
     min-height: 40px;
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 
     &-label {
         width: 180px;
         margin: auto 0;
+
+        &-top {
+            margin: 10px 0;
+        }
     }
 }
 
@@ -47,9 +51,31 @@
     line-height: 27px;
 }
 
-.nb-matches {
+.digit {
     font-size: 30px;
     margin: 10px 5px;
 }
 
-.winning-number {color: white}
+.copy {
+    border-radius: 2px;
+
+    &-item {
+        margin: 5px 0px;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-icon {
+        border: 1px solid currentColor;
+        border-radius: 15px;
+        padding: 3px;
+        height: 30px;
+        min-width: 30px;
+        position: relative;
+        background-color: var(--bg);
+        display: inline-block;
+    }
+}

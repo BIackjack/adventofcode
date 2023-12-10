@@ -5,7 +5,13 @@
     <div class="card-details">
         <div class="section winning-numbers-container">
             <span class="section-label">Winning numbers</span>
-            <span *ngFor="let number of card.winningNumbers" class="number winning-number">{{number}}</span>
+            <span
+                *ngFor="let number of card.winningNumbers"
+                [style.color]="number.color"
+                class="number winning-number"
+            >
+                    {{number.value}}
+            </span>
         </div>
         <div class="section my-numbers-container">
             <span class="section-label">My numbers</span>
@@ -13,13 +19,50 @@
                 *ngFor="let number of card.myNumbers"
                 class="number my-number"
                 [class.highlight]="number.isHighlighted"
+                [style.color]="number.color"
             >
                 {{number.value}}
             </span>
         </div>
         <div class="section nb-matches-container">
             <span class="section-label"># of matches</span>
-            <span class="nb-matches highlight">{{card.nbOfMatches}}</span>
+            <span class="digit">{{card.nbOfMatches}}</span>
+        </div>
+        <div class="section">
+            <span class="section-label">Points</span>
+            <span class="digit highlight">{{card.nbPoints}}</span>
+        </div>
+        <div class="section">
+            <span class="section-label section-label-top">Copies</span>
+            <div class="copy-container">
+                <div class="copy-item">
+                    <span class="copy">Original </span>
+                    <nb-icon icon="copy-outline" class="copy-icon"></nb-icon>
+                </div>
+                <div class="copy-item" *ngFor="let copy of card.copies; trackBy: trackByIndex">
+                    <span class="copy">
+                        From Card {{copy.copiedFrom + 1}}
+                        
+                        <ng-container *ngFor="let _ of [].constructor(copy.nbOfCopies <= 30 ? copy.nbOfCopies : 30); let iconIndex = index; trackBy: trackByIndex">
+                            <nb-icon
+                                icon="copy-outline"
+                                class="copy-icon"
+                                [style.left]="iconIndex * -8 + 'px'">
+                            </nb-icon>
+                        </ng-container>
+                        <span
+                            *ngIf="copy.nbOfCopies > 30"
+                            class="copy-icon"
+                            [style.left]="'-240px'">
+                            +{{copy.nbOfCopies - 30}}
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <span class="section-label"># of scratchcards</span>
+            <span class="digit highlight">{{card.totalNbOfCards}}</span>
         </div>
     </div>
 </div>
