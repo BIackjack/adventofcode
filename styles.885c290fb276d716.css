@@ -1,4 +1,4 @@
-@import"https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap";.nb-theme-dark h2{font-family:Signika Negative!important}body{overflow-x:hidden;background-color:#151a30}/*!
+@import"https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap";.nb-theme-dark h2{font-family:Signika Negative!important}body{--bg: #151a30;overflow-x:hidden;background-color:var(--bg)}/*!
  * @license
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
