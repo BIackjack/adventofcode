@@ -1,5 +1,10 @@
 <app-puzzle-input-switcher year="2023" day="06" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
 
+<div id="chart-0"></div>
+<div id="chart-1"></div>
+<div id="chart-2"></div>
+<div id="chart-3"></div>
+
 <app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
 
 <app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer" [explanation]="part2Explanation"></app-puzzle-answer-printer>

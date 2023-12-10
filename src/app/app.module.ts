@@ -103,6 +103,8 @@ import {
   TransformComponent,
   LegendComponent,
   MarkPointComponent,
+  MarkLineComponent,
+  MarkAreaComponent,
   VisualMapPiecewiseComponent,
   VisualMapContinuousComponent,
 } from 'echarts/components';
@@ -129,6 +131,8 @@ echarts.use([
   TransformComponent,
   LegendComponent,
   MarkPointComponent,
+  MarkLineComponent,
+  MarkAreaComponent,
   LabelLayout,
   UniversalTransition,
   VisualMapPiecewiseComponent,
