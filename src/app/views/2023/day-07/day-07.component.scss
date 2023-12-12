@@ -1,5 +1,144 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
 :host {
     font-size: 18px;
     font-family: Consolas;
     color: #888;
+    --chip-color: #262895;
+    --accent: #ec1b1b;
+    --card-bg: #e4e4e4;
+}
+
+.highlight {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px currentColor;
+}
+
+.bid {
+    width: 70px;
+    height: 70px;
+    margin-right: 70px;
+    border-radius: 50%;
+    border: 10px solid white;
+    background-color: var(--chip-color);
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    line-height: 45px;
+    font-family: 'Lilita One';
+    display: block;
+} 
+
+.hand {
+    &-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 0 80px;
+    }
+
+    &-type {
+        width: 200px;
+        text-align: left;
+        font-size: 22px;
+        color: white;
+        margin-left: 70px;
+    }
+}
+
+.card {
+    &-container {
+        position: relative;
+        display: inline-block;
+        width: 100px;
+        height: 160px;
+        background-color: var(--card-bg);
+        border-radius: 5px;
+        border: 2px solid #333;
+        transition: transform .1s ease-in;
+        box-shadow: 0 0 10px 0px #000000b0;
+
+        &:hover {
+            transform: translateY(-20px);
+        }
+
+        &:nth-of-type(1) {
+            rotate: -25deg;
+            translate: 10px 40px;
+        }
+
+        &:nth-of-type(2) {
+            rotate: -10deg;
+            translate: 0 10px;
+        }
+
+        &:nth-of-type(4) {
+            rotate: 10deg;
+            translate: 0 10px;
+        }
+
+        &:nth-of-type(5) {
+            rotate: 25deg;
+            translate: -10px 40px;
+        }
+    }
+
+    &-label {
+        font-size: 35px;
+        margin: 10px 8px;
+        display: inline-block;
+        color: var(--accent);
+        font-family: 'Lilita One', sans-serif;
+        position: absolute;
+
+        &--top {
+            top: 0; 
+            left: 0;   
+        }
+
+        &--bottom {
+            bottom: 0;
+            right: 0;
+            rotate: 180deg;
+        }
+    }
+
+    &-value {
+        display: inline-block;
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        line-height: 25px;
+        text-align: center;
+        
+        &--top {
+            top: 5px;
+            right: 5px;
+        }
+
+        &--bottom {
+            bottom: 5px;
+            left: 5px;
+            rotate: 180deg;
+        }
+    }
+
+    &-decoration {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        background-color: var(--accent);
+        color: var(--card-bg);
+        position: absolute;
+        top: 53px;
+        left: 23px;
+        border-radius: 40%;
+        padding: 6px;
+
+        nb-icon {
+            font-size: 36px;
+        }
+    }
 }

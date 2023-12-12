@@ -1,5 +1,18 @@
 <app-puzzle-input-switcher year="2023" day="07" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
 
+<div class="hand-container" *ngFor="let hand of part1Data">
+    <span class="bid">{{hand.bid}}</span>
+    <div class="card-container" *ngFor="let card of hand.cards; let cardIndex = index" [style.z-index]="5 - cardIndex">
+        <span class="card-label card-label--top">{{card.label}}</span>
+        <span class="card-label card-label--bottom">{{card.label}}</span>
+        <span class="card-value card-value--top">{{card.value}}</span>
+        <span class="card-value card-value--bottom">{{card.value}}</span>
+        <span class="card-decoration">
+            <nb-icon icon="gift-outline"></nb-icon>
+        </span>
+    </div>
+    <span class="hand-type highlight">{{hand.value}}</span>
+</div>
 
 <app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
 
