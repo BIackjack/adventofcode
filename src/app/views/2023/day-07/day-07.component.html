@@ -3,17 +3,51 @@
 <div class="hand-container" *ngFor="let hand of part1Data">
     <span class="bid">{{hand.bid}}</span>
     <div class="card-container" *ngFor="let card of hand.cards; let cardIndex = index" [style.z-index]="5 - cardIndex">
-        <span class="card-label card-label--top">{{card.label}}</span>
-        <span class="card-label card-label--bottom">{{card.label}}</span>
-        <span class="card-value card-value--top">{{card.value}}</span>
-        <span class="card-value card-value--bottom">{{card.value}}</span>
-        <span class="card-decoration">
-            <nb-icon icon="gift-outline"></nb-icon>
-        </span>
+        <div class="card-inner">
+            <span class="card-label card-label--top">{{card.label}}</span>
+            <span class="card-label card-label--bottom">{{card.label}}</span>
+            <span class="card-value card-value--top">{{card.value}}</span>
+            <span class="card-value card-value--bottom">{{card.value}}</span>
+            <span class="card-decoration">
+                <nb-icon icon="gift-outline"></nb-icon>
+            </span>
+        </div>
     </div>
     <span class="hand-type highlight">{{hand.value}}</span>
 </div>
 
 <app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
+
+<div class="hand-container" *ngFor="let hand of part2Data">
+    <span class="bid">{{hand.bid}}</span>
+    <div 
+        class="card-container" 
+        *ngFor="let card of hand.cards; let cardIndex = index"
+        [style.z-index]="5 - cardIndex"
+        [class.is-flippable]="card.label === 'J'"
+    >
+        <div class="card-inner">
+            <div class="card-seen">
+                <span class="card-label card-label--top">{{card.label}}</span>
+                <span class="card-label card-label--bottom">{{card.label}}</span>
+                <span class="card-value card-value--top">{{card.value}}</span>
+                <span class="card-value card-value--bottom">{{card.value}}</span>
+                <span class="card-decoration">
+                    <nb-icon icon="gift-outline"></nb-icon>
+                </span>
+            </div>
+            <div class="card-hidden" *ngIf="card.label === 'J'">
+                <span class="card-label card-label--top">{{hand.jokerStandsFor}}</span>
+                <span class="card-label card-label--bottom">{{hand.jokerStandsFor}}</span>
+                <span class="card-value card-value--top">{{card.part2Value}}</span>
+                <span class="card-value card-value--bottom">{{card.part2Value}}</span>
+                <span class="card-decoration">
+                    <nb-icon icon="gift-outline"></nb-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+    <span class="hand-type highlight">{{hand.valueWithJoker}}</span>
+</div>
 
 <app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer" [explanation]="part2Explanation"></app-puzzle-answer-printer>

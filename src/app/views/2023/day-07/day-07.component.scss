@@ -4,7 +4,7 @@
 :host {
     font-size: 18px;
     font-family: Consolas;
-    color: #888;
+    --value-color: #888;
     --chip-color: #262895;
     --accent: #ec1b1b;
     --card-bg: #e4e4e4;
@@ -54,14 +54,30 @@
         display: inline-block;
         width: 100px;
         height: 160px;
-        background-color: var(--card-bg);
-        border-radius: 5px;
-        border: 2px solid #333;
-        transition: transform .1s ease-in;
-        box-shadow: 0 0 10px 0px #000000b0;
+        color: var(--accent);
 
-        &:hover {
+        &:not(.is-flippable) .card-inner {
+            transition: transform .1s ease-in;
+        }
+
+        &:hover .card-inner {
             transform: translateY(-20px);
+        }
+
+        &.is-flippable {
+            --accent: #c73acc;
+
+            .card-inner {
+                transition: transform .25s ease-in;
+            }
+
+            &:hover .card-inner {
+                transform: rotateY(180deg) translateY(-20px);
+
+                .card-seen {
+                    opacity: 0;
+                }
+            }
         }
 
         &:nth-of-type(1) {
@@ -112,6 +128,7 @@
         width: 30px;
         line-height: 25px;
         text-align: center;
+        color: var(--value-color);
         
         &--top {
             top: 5px;
@@ -140,5 +157,32 @@
         nb-icon {
             font-size: 36px;
         }
+    }
+
+    &-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        background-color: var(--card-bg);
+        border-radius: 5px;
+        border: 2px solid #333;
+        box-shadow: 0 0 10px 0px #000000b0;
+    }
+
+    &-seen, &-hidden {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    &-seen {
+        transition: opacity .1s .12s;
+    }
+
+    &-hidden {
+        transform: rotateY(180deg);
     }
 }
