@@ -18,6 +18,7 @@ import { PuzzleYear2023Day05Component } from './views/2023/day-05/day-05.compone
 import { PuzzleYear2023Day06Component } from './views/2023/day-06/day-06.component';
 import { PuzzleYear2023Day07Component } from './views/2023/day-07/day-07.component';
 import { PuzzleYear2023Day08Component } from './views/2023/day-08/day-08.component';
+import { PuzzleYear2023Day09Component } from './views/2023/day-09/day-09.component';
 
 import { HomeComponent } from './views/home/home.component';
 
@@ -42,6 +43,7 @@ const routes: Routes = [
     { path: '2023/06', component: PuzzleYear2023Day06Component },
     { path: '2023/07', component: PuzzleYear2023Day07Component },
     { path: '2023/08', component: PuzzleYear2023Day08Component },
+    { path: '2023/09', component: PuzzleYear2023Day09Component },
 
     { path: '**', redirectTo: ''},
 ];

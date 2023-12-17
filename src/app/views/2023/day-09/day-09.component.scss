@@ -1,0 +1,60 @@
+:host {
+    font-size: 18px;
+    font-family: Consolas;
+    color: #888;
+}
+
+.sequence {
+    &-container {
+        margin: 30px 0;
+    }
+
+    &-line {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.digit {
+    margin: 5px;
+    padding: 2px;
+    border-radius: 8px;
+    border: 1px solid;
+    text-align: center;
+    position: relative;
+    background-color: var(--bg);
+
+    &--is-inferred {
+        border-style: dashed;
+    }
+
+    &--has-children::before {
+        content: "";
+        width: 24px;
+        height: 13px;
+        border-right: 2px #888 solid;
+        display: inline-block;
+        position: absolute;
+        top: -18px;
+        transform: rotateZ(30deg);
+        right: 3px;
+    }
+
+    &--has-children::after {
+        content: "";
+        width: 24px;
+        height: 13px;
+        border-left: 2px #888 solid;
+        display: inline-block;
+        position: absolute;
+        top: -18px;
+        transform: rotateZ(-30deg);
+        left: 3px;
+    }
+}
+
+.highlight {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px #fff;
+}

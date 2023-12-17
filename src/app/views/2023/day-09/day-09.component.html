@@ -1,0 +1,18 @@
+<app-puzzle-input-switcher year="2023" day="09" (inputRun)="onInputRun($event)"></app-puzzle-input-switcher>
+
+<div class="sequence-container" *ngFor="let sequence of data; let sequenceIndex = index">
+    <div class="sequence-line" *ngFor="let sequenceLine of sequence; let isFirstSequenceLine = first">
+        <span class="digit" *ngFor="let digit of sequenceLine; let isFirstDigit = first; let isLastDigit = last"
+            [class.highlight]="isFirstSequenceLine && (isFirstDigit || isLastDigit)"
+            [class.digit--is-inferred]="isFirstDigit || isLastDigit"
+            [class.digit--has-children]="!isFirstSequenceLine"
+            [style.width]="maxNbDigits[sequenceIndex] * 14 + 'px'"
+        >
+            {{digit}}
+        </span>
+    </div>
+</div>
+
+<app-puzzle-answer-printer *ngIf="part1Answer" [part]="1" [answer]="part1Answer" [explanation]="part1Explanation"></app-puzzle-answer-printer>
+
+<app-puzzle-answer-printer *ngIf="part2Answer" [part]="2" [answer]="part2Answer" [explanation]="part2Explanation"></app-puzzle-answer-printer>
